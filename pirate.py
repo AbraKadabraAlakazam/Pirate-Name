@@ -21,6 +21,16 @@ class PirateNameGenerator:
         y = random.randint(0, len(self.lastList)-1)
         return self.firstList[x] + " " + self.lastList[y]
 
+def buttonClick():
+    # Get info out of the boxes
+    first = fText.get()
+    last = lText.get()
+    # Create an instance of our generator
+    mygen= PirateNameGenerator(first, last)
+    # Run the generator
+    pName = mygen.CreateName()
+    # Show it on the screen
+    output.config(text =pName, image=banner, compound= CENTER)
 #mypirate = PirateNameGenerator("Umar", "Sheikh")
 #print(mypirate.CreateName())
 
@@ -38,8 +48,9 @@ fLabel = Label(root, text= "First Name", font = ft, fg= fg1, bg=bg1)
 fText = Entry (root, font = ft, fg = fg1, bg= bg1)
 lLabel = Label(root, text= "Last Name", font = ft, fg= fg1, bg=bg1)
 lText = Entry (root, font = ft, fg = fg1, bg= bg1)
-btn = Button(root, font =ft, fg=fg1, bg=bg1, text="Show me my name!")
-output= Label(root, image=banner)
+btn = Button(root, font =ft, fg=fg1, bg=bg1, text="Show me my name!", command =buttonClick)
+output= Label(root, image=banner, font=ft
+              )
 # Add them to the screen
 title.grid(row=0, column=0, columnspan=2)
 fText.grid(row=1, column=1)
