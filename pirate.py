@@ -17,9 +17,24 @@ class PirateNameGenerator:
         self.origLast = lastName
 
     def CreateName(self):
-        x = random.randint(0, len(self.firstList)-1)
-        y = random.randint(0, len(self.lastList)-1)
-        return self.firstList[x] + " " + self.lastList[y]
+        # First Letter of First Name
+        a = self.origFirst[0]
+        # First Letter of First Name
+        b = self.origLast[0]
+        # Convert to UPPER CASE
+        a = a.upper()
+        b = b.upper()
+        # Use Ord Function to get ASCII code
+        codea = ord(a)
+        codeb = ord(b)
+        #Subtract 65 to get the number starting at 0
+        codea -= 65 
+        codeb -= 65
+        #Use mod to make the list wrap around
+        indexa = codea % len(self.firstList)
+        indexb = codeb % len(self.lastList)
+
+        return self.firstList[indexa] + " " + self.lastList[indexb]
 
 def buttonClick():
     # Get info out of the boxes
@@ -31,9 +46,6 @@ def buttonClick():
     pName = mygen.CreateName()
     # Show it on the screen
     output.config(text =pName, image=banner, compound= CENTER)
-#mypirate = PirateNameGenerator("Umar", "Sheikh")
-#print(mypirate.CreateName())
-
 
 root = Tk()
 # Customizable Variables
@@ -61,7 +73,3 @@ btn.grid(row=3, column = 0, columnspan=2)
 output.grid(row=4, column=0, columnspan=2)
 # End
 root.mainloop()
-
-
-
-
